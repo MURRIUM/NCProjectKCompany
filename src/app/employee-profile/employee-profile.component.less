@@ -1,0 +1,44 @@
+.container {
+  display: flex;
+  flex: 0 0 auto;
+  justify-content: center;
+  align-items: center;
+  &__button{
+    background-color: #205000;
+    margin: 3px;
+    color: white;
+    padding: 10px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+    &:hover{
+      background-color: #3e783b;
+    }
+    &:disabled{
+      background-color: rgba(90,184,119,0.76)
+    }
+  }
+}
+
+.form{
+  &__label-text{
+    font-size: 20px;
+  }
+  &__input{
+    &-text{
+      font-size: 18px;
+      width: 100%;
+      padding: 12px 20px;
+      margin: 8px 0;
+      box-sizing: border-box;
+    }
+    &-date{
+      font-size: 18px;
+      width: 100%;
+      margin: 8px 0;
+      box-sizing: border-box;
+    }
+    &-checkbox{
+    }
+  }
+}

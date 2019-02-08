@@ -1,0 +1,43 @@
+.main-page{
+  .header, .navigation{
+    position: relative;
+    top: -8px;
+    left: -8px;
+    width: 102%;
+    display: flex;
+    flex: 1 1 auto;
+    justify-content: center;
+    background-position: 50% 50%;
+    background-size: 100%;
+    background-repeat: no-repeat;
+    margin: 0 0 0 0;
+    align-self: center;
+  }
+  &__router{
+  }
+}
+.header{
+  background-color: #217a00;
+  &__text{
+    color: white;
+  }
+}
+
+.navigation{
+  background-color: #000000;
+  &__item{
+    background-color: #205000;
+    margin: 3px;
+    color: white;
+    padding: 10px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+    &:hover{
+      background-color: rgb(62, 120, 59);
+    }
+    &:disabled{
+      background-color: rgba(90,184,119,0.76)
+    }
+  }
+}

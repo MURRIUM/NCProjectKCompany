@@ -1,0 +1,40 @@
+.main-page .header,
+.main-page .navigation {
+  position: relative;
+  top: -8px;
+  left: -8px;
+  width: 102%;
+  display: flex;
+  flex: 1 1 auto;
+  justify-content: center;
+  background-position: 50% 50%;
+  background-size: 100%;
+  background-repeat: no-repeat;
+  margin: 0 0 0 0;
+  align-self: center;
+}
+.header {
+  background-color: #217a00;
+}
+.header__text {
+  color: white;
+}
+.navigation {
+  background-color: #000000;
+}
+.navigation__item {
+  background-color: #205000;
+  margin: 3px;
+  color: white;
+  padding: 10px;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+}
+.navigation__item:hover {
+  background-color: #3e783b;
+}
+.navigation__item:disabled {
+  background-color: rgba(90, 184, 119, 0.76);
+}
+/*# sourceMappingURL=app.component.css.map */

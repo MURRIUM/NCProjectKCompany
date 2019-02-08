@@ -1,0 +1,38 @@
+.container {
+  display: flex;
+  flex: 0 0 auto;
+  justify-content: center;
+  align-items: center;
+}
+.container__button {
+  background-color: #205000;
+  margin: 3px;
+  color: white;
+  padding: 10px;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+}
+.container__button:hover {
+  background-color: #3e783b;
+}
+.container__button:disabled {
+  background-color: rgba(90, 184, 119, 0.76);
+}
+.form__label-text {
+  font-size: 20px;
+}
+.form__input-text {
+  font-size: 18px;
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
+}
+.form__input-date {
+  font-size: 18px;
+  width: 100%;
+  margin: 8px 0;
+  box-sizing: border-box;
+}
+/*# sourceMappingURL=employee-profile.component.css.map */

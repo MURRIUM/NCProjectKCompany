@@ -1,0 +1,19 @@
+<div class="container">
+  <form class="form" [formGroup]="editEmployee" (ngSubmit)="onSubmit()">
+    <label class="form__label-text">Name:
+      <input class="form__input-text" type="text" formControlName="name" placeholder="name">
+    </label><br>
+    <label class="form__label-text">Position:
+      <input class="form__input-text" type="text" formControlName="position" placeholder="position">
+    </label><br>
+    <label class="form__label-text">Birthday:
+      <input class="form__input-date" type="date" formControlName="birthday" placeholder="birthday">
+    </label><br>
+    <label class="form__label-text">Work status:
+      <input class="form__input-checkbox" type="checkbox" formControlName="status" placeholder="status">
+    </label><br>
+  </form>
+  <button class="container__button" [disabled]="!editEmployee.valid" (click)="onSubmit()">Сохранить</button>
+  <button class="container__button" (click)="onDelete()">Удалить</button>
+</div>
+
