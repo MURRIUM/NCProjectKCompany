@@ -1,73 +1,78 @@
-import {Component, OnInit} from '@angular/core';
-import {Employee} from '../Employee';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnInit} from '@angular/core';
+import {Employee, STANDARD_IMAGE} from '../Employee';
+import {FormBuilder} from '@angular/forms';
 import {EmployeesService} from '../employees.service';
 import {ActivatedRoute} from '@angular/router';
-import { Location } from '@angular/common';
+import {Location} from '@angular/common';
+import {MatDialog, MatDialogRef} from '@angular/material';
+import {EmployeeEditComponent} from '../employee-edit/employee-edit.component';
 
 @Component({
   selector: 'app-employee-profile',
   templateUrl: './employee-profile.component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush,
   styleUrls: ['./employee-profile.component.less']
 })
 export class EmployeeProfileComponent implements OnInit {
-  employee: Employee;
-  editEmployee: FormGroup;
+  @Input() employee: Employee;
+  standardImg = STANDARD_IMAGE;
+  noEmployeeById = false;
 
   constructor(
+    private route: ActivatedRoute,
     private fb: FormBuilder,
     private employeesService: EmployeesService,
-    private route: ActivatedRoute,
-    private location: Location) { }
+    private location: Location,
+    public dialog: MatDialog,
+    private cdr: ChangeDetectorRef) { }
 
   ngOnInit() {
-    const id = +this.route.snapshot.paramMap.get('id');
-    this.employeesService.getEmployee(id).subscribe(employee => this.employee = employee);
-    if (this.employee) {
-      this.editEmployee = this.fb.group({
-        name: [this.employee.name, Validators.required],
-        position: [this.employee.position, Validators.required],
-        birthday: [this.employee.birthday.slice(0, 10), Validators.required],
-        status: [this.employee.status]
-      });
-    } else {
-      this.editEmployee = this.fb.group({
-        name: ['', Validators.required],
-        position: ['', Validators.required],
-        birthday: ['', Validators.required],
-        status: ['']
-      });
+    let id = +this.route.snapshot.paramMap.get('id');
+    if (!id) {
+      id = 1;
     }
+    this.getEmployee(id);
   }
 
-  onSubmit() {
-    if (this.editEmployee.valid) {
-      if (!this.employee) {
-        this.employee = new Employee();
-        this.employeesService.lastId += 1;
-        this.employee.id = this.employeesService.lastId;
+  getEmployee(id: number) {
+    this.employeesService.getEmployeeFromServer(id).then(() => {
+      this.employee = this.employeesService.profileEmployee;
+      if (this.employee.image) {
+        this.standardImg = this.employee.image;
+      } else {
+        this.standardImg = STANDARD_IMAGE;
       }
-      this.employee.name = this.editEmployee.value.name;
-      this.employee.position = this.editEmployee.value.position;
-      this.employee.birthday = this.editEmployee.value.birthday;
-      this.employee.status = !!this.editEmployee.value.status;
-      this.employeesService.save(this.employee).catch((e) => { console.log(e); });
+      this.cdr.detectChanges();
+    }).catch((e) => {
+      this.noEmployeeById = true;
+      this.cdr.detectChanges();
+    });
+  }
+
+  onEdit(employee: Employee) {
+    let dialogRef: MatDialogRef<EmployeeEditComponent>;
+    if (employee) {
+      dialogRef = this.dialog.open(EmployeeEditComponent, {data: {employee: employee}});
+    } else {
+      dialogRef = this.dialog.open(EmployeeEditComponent, {data: {employee: new Employee()}});
     }
-    this.location.back();
+    dialogRef.afterClosed().subscribe((close) => {
+      this.getEmployee(this.employee.id);
+      if (close) {
+        this.employeesService.loadAll();
+        this.location.back();
+      }
+    });
   }
 
   onDelete() {
     if (this.employee) {
-      this.employeesService.delete(this.employee);
-      this.location.back();
-    } else {
-      this.editEmployee = this.fb.group({
-        name: ['', Validators.required],
-        position: ['', Validators.required],
-        birthday: ['', Validators.required],
-        status: ['']
+      this.employeesService.delete(this.employee).finally(() => {
+        this.employeesService.loadAll().finally(() => {
+          this.location.back();
+        });
       });
-      this.employee = null;
     }
+    this.employee = null;
   }
 }

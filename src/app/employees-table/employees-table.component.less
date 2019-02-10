@@ -1,0 +1,55 @@
+.table{
+  table-layout: fixed;
+  width: 100%;
+  border-collapse: collapse;
+  border: 3px solid #202225;
+  font-size: 18px;
+}
+
+.tier{
+  &:hover{
+    background-color: #6c6d70;
+    cursor: pointer;
+  }
+  &__th{
+    background-color: #586266;
+    text-align: left;
+    &_small{
+      background-color: #586266;
+      text-align: left;
+      width: 36px;
+      &:hover {
+        background-color: #6c6d70;
+      }
+    }
+    &_medium{
+      background-color: #586266;
+      text-align: left;
+      width: 100px;
+      &:hover{
+        background-color: #6c6d70;
+      }
+    }
+    &:hover{
+      background-color: #6c6d70;
+    }
+  }
+  &__td{
+  }
+}
+
+.button{
+  background-color: #202225;
+  margin: 3px;
+  color: white;
+  padding: 10px;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+  &:hover{
+    background-color: rgb(62, 120, 59);
+  }
+  &:disabled{
+    background-color: rgba(58, 59, 62, 0.76)
+  }
+}

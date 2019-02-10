@@ -1,0 +1,75 @@
+.container {
+  display: flex;
+  flex: 1 1 auto;
+  justify-content: center;
+  align-items: center;
+  &__button{
+    background-color: #202225;
+    margin: 3px;
+    color: white;
+    padding: 10px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+    &:hover{
+    }
+    &:disabled{
+      background-color: rgba(58, 59, 62, 0.76);
+    }
+  }
+  &__image-box{
+    display: flex;
+    flex-direction: column;
+    margin-right: 10px;
+    &__image{
+      cursor: pointer;
+      margin: 0 0;
+      width: 256px;
+      height: 256px;
+      background-size: contain;
+      background-repeat: no-repeat;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      &__text{
+        cursor: pointer;
+        display: none;
+        font-size: 20px;
+        color: white;
+        position: relative;
+        text-shadow: 2px 0 0 #000000, -2px 0 0 #000000, 0 2px 0 #000000,
+          0 -2px 0 #000000, 1px 1px #000000, -1px -1px 0 #000000, 1px -1px 0 #000000, -1px 1px 0 #000000;
+      }
+      &:hover &__text{
+        display: block;
+      }
+    }
+  }
+}
+
+.form{
+  &__label-text{
+    font-size: 20px;
+  }
+  &__input{
+    margin-bottom: 5px;
+    &-text{
+      font-size: 16px;
+      width: 100%;
+      padding: 12px 20px;
+      margin: 8px 0;
+      box-sizing: border-box;
+    }
+    &-date{
+      font-size: 16px;
+      width: 100%;
+      margin: 8px 0;
+      box-sizing: border-box;
+    }
+    &-checkbox{
+    }
+    &-image{
+      display: none;
+    }
+  }
+}

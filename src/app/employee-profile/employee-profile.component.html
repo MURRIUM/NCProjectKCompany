@@ -1,19 +1,32 @@
-<div class="container">
-  <form class="form" [formGroup]="editEmployee" (ngSubmit)="onSubmit()">
-    <label class="form__label-text">Name:
-      <input class="form__input-text" type="text" formControlName="name" placeholder="name">
-    </label><br>
-    <label class="form__label-text">Position:
-      <input class="form__input-text" type="text" formControlName="position" placeholder="position">
-    </label><br>
-    <label class="form__label-text">Birthday:
-      <input class="form__input-date" type="date" formControlName="birthday" placeholder="birthday">
-    </label><br>
-    <label class="form__label-text">Work status:
-      <input class="form__input-checkbox" type="checkbox" formControlName="status" placeholder="status">
-    </label><br>
-  </form>
-  <button class="container__button" [disabled]="!editEmployee.valid" (click)="onSubmit()">Сохранить</button>
-  <button class="container__button" (click)="onDelete()">Удалить</button>
+<div class="holder" *ngIf="!noEmployeeById">
+  <div class="holder__image" [ngStyle]="{'background-image': 'url(' + standardImg + ')'}"></div>
+  <div class="container" *ngIf="employee">
+    <div class="container__text">
+      <span class="container__clarification">Фамиилия имя отчество: </span>
+      <span class="container__text-name">{{employee.name}}</span>
+    </div>
+    <div class="container__text">
+      <span class="container__clarification">Должность: </span>
+      <span class="container__text-position">{{employee.position}}</span>
+    </div>
+    <div class="container__text">
+      <span class="container__clarification">Дата рождения: </span>
+      <span class="container__text-birthday">{{employee.birthday.slice(0,10)}}</span>
+    </div>
+    <div class="container__status">
+      <span class="container__clarification">Рабочий статус: </span>
+      <span class="container__status_working" *ngIf="employee.status">Работает</span>
+      <span class="container__status_not-working" *ngIf="!employee.status">Не работает</span>
+    </div>
+    <div class="container__text">
+      <span class="container__clarification" *ngIf="employee.commentary">Комментарий:</span>
+      <span class="container__text-commentary">{{employee.commentary}}</span>
+    </div>
+    <button mat-raised-button class="container__button" (click)="onEdit(employee)">Изменить</button>
+    <button class="container__button" (click)="onDelete()">Удалить</button>
+  </div>
 </div>
+
+<div class="holder" *ngIf="noEmployeeById">No employee with id: {{route.snapshot.paramMap.get('id')}}</div>
+
 

@@ -1,0 +1,31 @@
+<div class="container">
+  <div class="container__image-box">
+    <div class="container__image-box__image" [ngStyle]="{'background-image': 'url(' + profileImage + ')'}" (click)="addImage()">
+      <p class="container__image-box__image__text">Изменить</p>
+    </div>
+    <button class="container__button" *ngIf="!isStandard" (click)="onDeleteImage()">Удалить изображение</button>
+  </div>
+
+  <form class="form" [formGroup]="editEmployee" (ngSubmit)="onSubmit()">
+    <label class="form__label-text">Фамилия имя отчество:
+      <input class="form__input-text" type="text" formControlName="name" placeholder="ФИО">
+    </label><br>
+    <label class="form__label-text">Должность:
+      <input class="form__input-text" type="text" formControlName="position" placeholder="Должность">
+    </label><br>
+    <label class="form__label-text">Дата рождения:
+      <input class="form__input-date" type="date" formControlName="birthday" placeholder="Дата рождения">
+    </label><br>
+    <label class="form__label-text">Работает:
+      <input class="form__input-checkbox" type="checkbox" formControlName="status">
+    </label><br>
+    <label class="form__label-text">Комментарий:
+      <input class="form__input-text" type="text" formControlName="commentary" placeholder="Комментарий">
+    </label><br>
+    <label class="form__label-text">
+      <input class="form__input-image" type="file" #file accept=".jpg, .jpeg, .png" (change)="onImageAdded()">
+    </label><br>
+    <button class="container__button" [disabled]="!editEmployee.valid" (click)="onSubmit()">Сохранить</button>
+    <button class="container__button" (click)="onDelete()">Удалить</button>
+  </form>
+</div>

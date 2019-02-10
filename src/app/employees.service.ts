@@ -14,13 +14,23 @@ export class EmployeesService {
 
   public lastId: number;
   public employees: Employee[] = [];
+  public profileEmployee: Employee;
+
+  saveImage(image: File) {
+    return Backendless.Files.upload(image, 'profileImages', true);
+  }
+
+  deleteImage(imageUrl: string) {
+    return Backendless.Files.remove(imageUrl);
+  }
 
   save(employee: Employee) {
     return EmployeesOfCompany.save<Employee>(employee).then(() => {this.getId(); });
   }
 
   delete(employee: Employee) {
-    EmployeesOfCompany.remove(employee).then(() => {this.getId(); }).catch((e) => { console.log(e); });
+    this.deleteImage(employee.image);
+    return EmployeesOfCompany.remove(employee).then(() => {this.getId(); }).catch((e) => { console.log(e); });
   }
 
   getId() {
@@ -36,21 +46,28 @@ export class EmployeesService {
     queryBuilder.setSortBy('id');
     return EmployeesOfCompany.find<Employee>(queryBuilder).then((employees: Employee[]) => {
       this.employees = employees;
-    });
+    }).finally(() => this.getId());
   }
 
-  loadFrom(id: number) {
+  loadStartingFrom(id: number) {
     queryBuilder.setPageSize(20);
     queryBuilder.setSortBy('id');
     queryBuilder.setWhereClause(`id >= ${id}`);
     return EmployeesOfCompany.find<Employee>(queryBuilder).then((employees: Employee[]) => {
       this.employees = employees;
+      queryBuilder.setWhereClause('');
     });
   }
 
-  getEmployee(id: number): Observable<Employee> {
-    return of(this.employees.find(employee => employee.id === id));
+  loadSingleEmployee(id: number) {
+    queryBuilder.setWhereClause(`id = ${id}`);
+    return EmployeesOfCompany.find<Employee>(queryBuilder).then((employees: Employee[]) => {
+      this.profileEmployee = employees[0];
+      queryBuilder.setWhereClause('');
+    }).catch(e => console.log(e));
   }
 
-
+  getEmployeeFromServer(id: number) {
+    return this.loadSingleEmployee(id);
+  }
 }

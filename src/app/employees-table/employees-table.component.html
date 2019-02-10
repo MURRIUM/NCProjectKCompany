@@ -1,18 +1,20 @@
 <table class="table">
   <tr class="tier">
-    <th class="tier__th">ID</th>
-    <th class="tier__th">Full name</th>
-    <th class="tier__th">Position</th>
-    <th class="tier__th">Birthday</th>
-    <th class="tier__th">Working status</th>
+    <th class="tier__th_small">ID</th>
+    <th class="tier__th">Фамилия имя отчество</th>
+    <th class="tier__th">Должность</th>
+    <th class="tier__th">Дата рождения</th>
+    <th class="tier__th_medium">Работает</th>
   </tr>
   <tr class="tier" *ngFor="let employee of employees" routerLink="/profile/{{employee.id}}">
     <td class="tier__td">{{employee.id}}</td>
     <td class="tier__td">{{employee.name}}</td>
     <td class="tier__td">{{employee.position}}</td>
     <td class="tier__td">{{employee.birthday.slice(0,10)}}</td>
-    <td class="tier__td">{{employee.status}}</td>
+    <td class="tier__td" *ngIf="employee.status">✔</td>
+    <td class="tier__td" *ngIf="!employee.status">╳</td>
   </tr>
 </table>
 <button class="button" [disabled]="prevDisabled" (click)="onPrev()">Назад</button>
 <button class="button" [disabled]="nextDisabled" (click)="onNext()">Дальше</button>
+<button mat-raised-button class="button" (click)="openEditDialog(null)">Добавить</button>

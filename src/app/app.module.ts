@@ -1,14 +1,17 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import {MatDialogModule} from '@angular/material';
 import Backendless from 'backendless';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { MainPageComponent } from './main-page/main-page.component';
-import { EmployeesTableComponent } from './employees/employees-table.component';
+import { EmployeesTableComponent } from './employees-table/employees-table.component';
 import {environment} from '../environments/environment';
 import { EmployeeProfileComponent } from './employee-profile/employee-profile.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { EmployeeEditComponent } from './employee-edit/employee-edit.component';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 Backendless.initApp(environment.backendless.APP_ID, environment.backendless.API_KEY);
 
@@ -17,15 +20,21 @@ Backendless.initApp(environment.backendless.APP_ID, environment.backendless.API_
     AppComponent,
     MainPageComponent,
     EmployeesTableComponent,
-    EmployeeProfileComponent
+    EmployeeProfileComponent,
+    EmployeeEditComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatDialogModule,
+    BrowserAnimationsModule
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [
+    EmployeeEditComponent
+  ]
 })
 export class AppModule { }

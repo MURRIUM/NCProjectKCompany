@@ -1,11 +1,44 @@
-.container {
+.holder {
+  padding: 20px;
+  background-color: #263238;
   display: flex;
-  flex: 0 0 auto;
   justify-content: center;
   align-items: center;
+  font-size: 20px;
+  color: white;
+  position: relative;
+  top: -8px;
+  left: -8px;
+  width: 102%;
+}
+.holder__image {
+  margin: 0 0;
+  width: 256px;
+  height: 256px;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+.container {
+  padding: 10px;
+  margin: 10px;
+}
+.container__clarification {
+  text-shadow: 2px 0 0 #3e783b, -2px 0 0 #3e783b, 0 2px 0 #3e783b, 0 -2px 0 #3e783b, 1px 1px #3e783b, -1px -1px 0 #3e783b, 1px -1px 0 #3e783b, -1px 1px 0 #3e783b;
+  font-size: 20px;
+  padding-bottom: 10px;
+  display: block;
+}
+.container__text {
+  padding-bottom: 10px;
+}
+.container__status {
+  padding-bottom: 10px;
+}
+.container__commentary {
+  padding-bottom: 10px;
 }
 .container__button {
-  background-color: #205000;
+  background-color: #202225;
   margin: 3px;
   color: white;
   padding: 10px;
@@ -17,22 +50,6 @@
   background-color: #3e783b;
 }
 .container__button:disabled {
-  background-color: rgba(90, 184, 119, 0.76);
-}
-.form__label-text {
-  font-size: 20px;
-}
-.form__input-text {
-  font-size: 18px;
-  width: 100%;
-  padding: 12px 20px;
-  margin: 8px 0;
-  box-sizing: border-box;
-}
-.form__input-date {
-  font-size: 18px;
-  width: 100%;
-  margin: 8px 0;
-  box-sizing: border-box;
+  background-color: rgba(58, 59, 62, 0.76);
 }
 /*# sourceMappingURL=employee-profile.component.css.map */

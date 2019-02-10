@@ -1,0 +1,50 @@
+.table {
+  table-layout: fixed;
+  width: 100%;
+  border-collapse: collapse;
+  border: 3px solid #202225;
+  font-size: 18px;
+}
+.tier:hover {
+  background-color: #6c6d70;
+  cursor: pointer;
+}
+.tier__th {
+  background-color: #586266;
+  text-align: left;
+}
+.tier__th_small {
+  background-color: #586266;
+  text-align: left;
+  width: 36px;
+}
+.tier__th_small:hover {
+  background-color: #6c6d70;
+}
+.tier__th_medium {
+  background-color: #586266;
+  text-align: left;
+  width: 100px;
+}
+.tier__th_medium:hover {
+  background-color: #6c6d70;
+}
+.tier__th:hover {
+  background-color: #6c6d70;
+}
+.button {
+  background-color: #202225;
+  margin: 3px;
+  color: white;
+  padding: 10px;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+}
+.button:hover {
+  background-color: #3e783b;
+}
+.button:disabled {
+  background-color: rgba(58, 59, 62, 0.76);
+}
+/*# sourceMappingURL=employees-table-table.component.css.map */
