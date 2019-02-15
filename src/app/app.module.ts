@@ -12,6 +12,8 @@ import { EmployeeProfileComponent } from './employee-profile/employee-profile.co
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { EmployeeEditComponent } from './employee-edit/employee-edit.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { LoginPopupComponent } from './login-popup/login-popup.component';
+import { AdminPanelComponent } from './admin-panel/admin-panel.component';
 
 Backendless.initApp(environment.backendless.APP_ID, environment.backendless.API_KEY);
 
@@ -21,7 +23,9 @@ Backendless.initApp(environment.backendless.APP_ID, environment.backendless.API_
     MainPageComponent,
     EmployeesTableComponent,
     EmployeeProfileComponent,
-    EmployeeEditComponent
+    EmployeeEditComponent,
+    LoginPopupComponent,
+    AdminPanelComponent
   ],
   imports: [
     BrowserModule,
@@ -34,7 +38,8 @@ Backendless.initApp(environment.backendless.APP_ID, environment.backendless.API_
   providers: [],
   bootstrap: [AppComponent],
   entryComponents: [
-    EmployeeEditComponent
+    EmployeeEditComponent,
+    LoginPopupComponent
   ]
 })
 export class AppModule { }

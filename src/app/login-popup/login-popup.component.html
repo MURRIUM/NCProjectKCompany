@@ -1,0 +1,11 @@
+<div class="container">
+  <form class="form" [formGroup]="loginPopup">
+    <label class="form__label-text">Логин:
+      <input class="form__input-text" type="text" formControlName="login">
+    </label><br>
+    <label class="form__label-text">Пароль:
+      <input class="form__input-text" type="password"  formControlName="password">
+    </label><br>
+  </form>
+  <button class="container__button" mat-raised-button [disabled]="!loginPopup.valid" (click)="onSubmit()">Войти</button>
+</div>

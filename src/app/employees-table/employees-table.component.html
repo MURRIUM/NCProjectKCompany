@@ -17,4 +17,8 @@
 </table>
 <button class="button" [disabled]="prevDisabled" (click)="onPrev()">Назад</button>
 <button class="button" [disabled]="nextDisabled" (click)="onNext()">Дальше</button>
-<button mat-raised-button class="button" (click)="openEditDialog(null)">Добавить</button>
+<button
+  *ngIf="employeesService.loggedUser &&
+  employeesService.loggedUser.profile &&
+  employeesService.loggedUser.profile.admin"
+  mat-raised-button class="button" (click)="openEditDialog(null)">Добавить</button>

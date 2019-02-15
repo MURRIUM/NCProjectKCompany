@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import {EmployeesTableComponent} from './employees-table/employees-table.component';
 import {MainPageComponent} from './main-page/main-page.component';
 import {EmployeeProfileComponent} from './employee-profile/employee-profile.component';
+import {APP_BASE_HREF} from '@angular/common';
 
 const routes: Routes = [
   { path: '', redirectTo: '/main-page', pathMatch: 'full' },
@@ -14,6 +15,7 @@ const routes: Routes = [
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
+  providers: [{provide: APP_BASE_HREF, useValue : '/' }]
 })
 export class AppRoutingModule { }

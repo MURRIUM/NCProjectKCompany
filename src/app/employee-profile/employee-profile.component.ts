@@ -27,10 +27,7 @@ export class EmployeeProfileComponent implements OnInit {
     private cdr: ChangeDetectorRef) { }
 
   ngOnInit() {
-    let id = +this.route.snapshot.paramMap.get('id');
-    if (!id) {
-      id = 1;
-    }
+    const id = +this.route.snapshot.paramMap.get('id');
     this.getEmployee(id);
   }
 
@@ -44,9 +41,19 @@ export class EmployeeProfileComponent implements OnInit {
       }
       this.cdr.detectChanges();
     }).catch((e) => {
+      console.error(e);
       this.noEmployeeById = true;
       this.cdr.detectChanges();
     });
+  }
+
+  checkLogin(): boolean {
+    if (this.employeesService.loggedUser && this.employeesService.loggedUser.profile) {
+      if(this.employeesService.loggedUser.profile.admin || this.employeesService.loggedUser.id === this.employee.id) {
+        return true;
+      }
+    }
+    return false;
   }
 
   onEdit(employee: Employee) {

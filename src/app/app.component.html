@@ -7,7 +7,9 @@
   <nav class="navigation">
     <button class="navigation__item" routerLink="/main-page">Главная</button>
     <button class="navigation__item" routerLink="/employees">Список сотрудников</button>
-    <button class="navigation__item" routerLink="/profile">Профиль</button>
+    <button *ngIf="employeesService.loggedUser" class="navigation__item" routerLink="/profile/{{employeesService.loggedUser.id}}">Профиль</button>
+    <button *ngIf="!employeesService.loggedUser" class="navigation__item" (click)="openLoginPopup()">Войти</button>
+    <button *ngIf="employeesService.loggedUser" class="navigation__item" (click)="logOut()">Выход</button>
   </nav>
   <router-outlet class="main-page__router"></router-outlet>
 </div>

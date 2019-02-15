@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {Employee} from './Employee';
-import {Observable, of} from 'rxjs';
+import {User} from './user';
 
 const EmployeesOfCompany = Backendless.Data.of('CompanyTable');
 const queryBuilder = Backendless.DataQueryBuilder.create();
@@ -9,12 +9,37 @@ const queryBuilder = Backendless.DataQueryBuilder.create();
   providedIn: 'root'
 })
 export class EmployeesService {
-  constructor() {
-  }
+  constructor() { }
 
   public lastId: number;
   public employees: Employee[] = [];
   public profileEmployee: Employee;
+  public loggedUser: User;
+
+  checkLoginUser() {
+    return Backendless.UserService.getCurrentUser()
+      .then( ( currentUser: User ) => {
+        this.loggedUser = currentUser;
+        this.loadSingleEmployee(this.loggedUser.id).finally(() => {
+          this.loggedUser.profile = this.profileEmployee;
+        });
+        }
+      );
+  }
+
+  logIn(login: string, password: string) {
+    return Backendless.UserService.login(login, password, true).then((loggedInUser: User) => {
+      this.loggedUser = loggedInUser;
+      this.loadSingleEmployee(this.loggedUser.id).finally(() => {
+        this.loggedUser.profile = this.profileEmployee;
+      });
+    });
+  }
+
+  logOut() {
+    this.loggedUser = null;
+    return Backendless.UserService.logout();
+  }
 
   saveImage(image: File) {
     return Backendless.Files.upload(image, 'profileImages', true);
@@ -22,6 +47,10 @@ export class EmployeesService {
 
   deleteImage(imageUrl: string) {
     return Backendless.Files.remove(imageUrl);
+  }
+
+  registerNewUser(user: User) {
+    return Backendless.UserService.register(user);
   }
 
   save(employee: Employee) {

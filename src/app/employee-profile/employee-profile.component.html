@@ -22,8 +22,8 @@
       <span class="container__clarification" *ngIf="employee.commentary">Комментарий:</span>
       <span class="container__text-commentary">{{employee.commentary}}</span>
     </div>
-    <button mat-raised-button class="container__button" (click)="onEdit(employee)">Изменить</button>
-    <button class="container__button" (click)="onDelete()">Удалить</button>
+    <button *ngIf="checkLogin()" mat-raised-button class="container__button" (click)="onEdit(employee)">Изменить</button>
+    <button *ngIf="checkLogin()" class="container__button" (click)="onDelete()">Удалить</button>
   </div>
 </div>
 

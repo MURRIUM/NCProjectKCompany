@@ -6,6 +6,8 @@ export class Employee {
   status: boolean;
   commentary: string;
   image: string;
+  admin: boolean;
+  hasLogin: boolean;
 }
 
 export const STANDARD_IMAGE = 'https://backendlessappcontent.com/' +

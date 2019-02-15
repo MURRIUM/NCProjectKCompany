@@ -1,6 +1,7 @@
 <div class="container">
   <div class="container__image-box">
-    <div class="container__image-box__image" [ngStyle]="{'background-image': 'url(' + profileImage + ')'}" (click)="addImage()">
+    <div class="container__image-box__image"
+         [ngStyle]="{'background-image': 'url(' + profileImage + ')'}" (click)="addImage()">
       <p class="container__image-box__image__text">Изменить</p>
     </div>
     <button class="container__button" *ngIf="!isStandard" (click)="onDeleteImage()">Удалить изображение</button>
@@ -25,6 +26,19 @@
     <label class="form__label-text">
       <input class="form__input-image" type="file" #file accept=".jpg, .jpeg, .png" (change)="onImageAdded()">
     </label><br>
+    <label *ngIf="employeesService.loggedUser.profile.admin && !employee ||
+     employeesService.loggedUser.profile.admin && employee && !employee.hasLogin" class="form__label-text">
+      Завести пользователю аккаунт:
+      <input type="checkbox" [checked]="checkedNewLogin" (change)="checkedNewLogin = !checkedNewLogin">
+    </label><br>
+    <div *ngIf="checkedNewLogin">
+      <label class="form__label-text">Логин:
+        <input class="form__input-text" type="text" formControlName="login" placeholder="Логин">
+      </label><br>
+      <label class="form__label-text">Пароль:
+        <input class="form__input-text" type="password" formControlName="password" placeholder="Пароль">
+      </label><br>
+    </div>
     <button class="container__button" [disabled]="!editEmployee.valid" (click)="onSubmit()">Сохранить</button>
     <button class="container__button" (click)="onDelete()">Удалить</button>
   </form>

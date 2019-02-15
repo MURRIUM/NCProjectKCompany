@@ -3,6 +3,7 @@ import {Employee, STANDARD_IMAGE} from '../Employee';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {EmployeesService} from '../employees.service';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
+import {User} from '../user';
 
 // @ts-ignore
 @Component({
@@ -18,6 +19,7 @@ export class EmployeeEditComponent implements OnInit {
   profileImage = STANDARD_IMAGE;
   isStandard = true;
   isNew = true;
+  checkedNewLogin = false;
 
   constructor(
     private fb: FormBuilder,
@@ -32,7 +34,9 @@ export class EmployeeEditComponent implements OnInit {
       position: ['', Validators.required],
       birthday: ['', Validators.required],
       status: [''],
-      commentary: ['']
+      commentary: [''],
+      login: [''],
+      password: ['']
     });
 
     if (this.data.employee.id) {
@@ -46,7 +50,9 @@ export class EmployeeEditComponent implements OnInit {
             position: [this.employee.position, Validators.required],
             birthday: [this.employee.birthday.slice(0, 10), Validators.required],
             status: [this.employee.status],
-            commentary: [this.employee.commentary ? this.employee.commentary : '' ]
+            commentary: [this.employee.commentary ? this.employee.commentary : '' ],
+            login: [''],
+            password: ['']
           });
         }
         if (this.employee.image) {
@@ -90,6 +96,16 @@ export class EmployeeEditComponent implements OnInit {
       this.employee.commentary = this.editEmployee.value.commentary;
       if (!this.isStandard) {
         this.employee.image = this.profileImage;
+      }
+      if (this.checkedNewLogin) {
+        if (this.editEmployee.value.login !== '' && this.editEmployee.value.password !== '') {
+          let newUser: User;
+          newUser = new User();
+          newUser.id = this.employee.id;
+          newUser.name = this.editEmployee.value.login;
+          newUser.password = this.editEmployee.value.password;
+          this.employeesService.registerNewUser(newUser);
+        }
       }
       this.employeesService.save(this.employee).then(() => this.employeesService.loadAll()).finally(() => {
         this.matDialogRef.close(false);
