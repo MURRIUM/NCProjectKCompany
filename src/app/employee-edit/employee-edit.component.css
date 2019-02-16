@@ -13,6 +13,9 @@
   border: none;
   cursor: pointer;
 }
+.container__button:hover {
+  background-color: #26647d;
+}
 .container__button:disabled {
   background-color: rgba(58, 59, 62, 0.76);
 }

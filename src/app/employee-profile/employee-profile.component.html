@@ -2,7 +2,7 @@
   <div class="holder__image" [ngStyle]="{'background-image': 'url(' + standardImg + ')'}"></div>
   <div class="container" *ngIf="employee">
     <div class="container__text">
-      <span class="container__clarification">Фамиилия имя отчество: </span>
+      <span class="container__clarification">Фамилия имя отчество: </span>
       <span class="container__text-name">{{employee.name}}</span>
     </div>
     <div class="container__text">
@@ -22,8 +22,21 @@
       <span class="container__clarification" *ngIf="employee.commentary">Комментарий:</span>
       <span class="container__text-commentary">{{employee.commentary}}</span>
     </div>
-    <button *ngIf="checkLogin()" mat-raised-button class="container__button" (click)="onEdit(employee)">Изменить</button>
-    <button *ngIf="checkLogin()" class="container__button" (click)="onDelete()">Удалить</button>
+    <button *ngIf="checkLogin()"
+            mat-raised-button class="container__button"
+            (click)="onEdit(employee)">
+      Изменить
+    </button>
+    <button *ngIf="checkLogin() && employee && !employee.hasLogin"
+            class="container__button"
+            (click)="createAccount()">
+      Создать аккаунт
+    </button>
+    <button *ngIf="checkLogin() && employee && !employee.hasLogin"
+            class="container__button"
+            (click)="onDelete()">
+      Удалить
+    </button>
   </div>
 </div>
 

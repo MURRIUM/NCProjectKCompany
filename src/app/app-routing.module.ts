@@ -4,13 +4,15 @@ import {EmployeesTableComponent} from './employees-table/employees-table.compone
 import {MainPageComponent} from './main-page/main-page.component';
 import {EmployeeProfileComponent} from './employee-profile/employee-profile.component';
 import {APP_BASE_HREF} from '@angular/common';
+import {AdminPanelComponent} from './admin-panel/admin-panel.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/main-page', pathMatch: 'full' },
   {path: 'employees', component: EmployeesTableComponent},
   {path: 'main-page', component: MainPageComponent},
   {path: 'profile', component: EmployeeProfileComponent},
-  {path: 'profile/:id', component: EmployeeProfileComponent}
+  {path: 'profile/:id', component: EmployeeProfileComponent},
+  {path: 'admin', component: AdminPanelComponent}
 ];
 
 @NgModule({

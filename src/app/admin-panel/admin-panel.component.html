@@ -1,3 +1,21 @@
-<p>
-  admin-panel works!
-</p>
+<div *ngIf="employeesService.loggedUser && employeesService.loggedUser.profile.admin" >
+  <table class="table">
+    <tr class="tier">
+      <th class="tier__th_small">ID</th>
+      <th class="tier__th">Фамилия имя отчество</th>
+      <th class="tier__th">Должность</th>
+      <th class="tier__th">Права доступа</th>
+    </tr>
+    <tr *ngFor="let user of users" class="tier">
+      <td class="tier__td">{{user.id}}</td>
+      <td class="tier__td">{{user.name}}</td>
+      <td class="tier__td">{{user.position}}</td>
+      <td class="tier__td_rights" *ngIf="user.admin" (click)="changeRights(user)">Администратор</td>
+      <td class="tier__td_rights" *ngIf="!user.admin" (click)="changeRights(user)">Пользователь</td>
+    </tr>
+  </table>
+</div>
+<div *ngIf="!employeesService.loggedUser || !employeesService.loggedUser.profile.admin" class="holder">
+  Недостаточно прав доступа
+</div>
+

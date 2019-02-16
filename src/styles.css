@@ -3,8 +3,10 @@
 html {
   width: 100%;
   overflow-x: hidden;
-  background-color: rgba(38, 50, 56, 0.76);
-  color: white;
+  background: url("https://backendlessappcontent.com/484FA083-7EA3-0B04-FF89-9C520F131C00/F14CB3A3-B937-5A40-FFF5-6CB5DBE0C500/files/images/company.jpg") no-repeat center center fixed;
+  background-size: cover;
+  color: #000000;
+  font-family: "Droid Sans", sans-serif;
   font-size: 16px;
 }
 /*# sourceMappingURL=styles.css.map */

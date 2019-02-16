@@ -1,0 +1,14 @@
+<div class="container">
+  <form [formGroup]="loginEmployee" class="form">
+    <div>
+      <label class="form__label-text">Логин:
+        <input class="form__input-text" type="text" formControlName="login" placeholder="Логин">
+      </label><br>
+      <label class="form__label-text">Пароль:
+        <input class="form__input-text" type="password" formControlName="password" placeholder="Пароль">
+      </label><br>
+    </div>
+    <button class="container__button" mat-raised-button [disabled]="!loginEmployee.valid" (click)="onSubmit()">Сохранить</button>
+  </form>
+</div>
+

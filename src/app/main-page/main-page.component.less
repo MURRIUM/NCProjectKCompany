@@ -1,0 +1,76 @@
+@border: rgb(210, 230, 241);
+
+.container{
+  position: relative;
+  left: 5%;
+  width: 90%;
+  text-shadow: 2px 0 0 @border, -2px 0 0 @border, 0 2px 0 @border,
+    0 -2px 0 @border, 1px 1px @border, -1px -1px 0 @border,
+    1px -1px 0 @border, -1px 1px 0 @border;
+  &__h1{
+  }
+  &__text{
+    font-size: 22px;
+    width: 50%;
+  }
+  &__phone{
+    display: flex;
+    align-items: center;
+    &__image{
+      background-image:
+        url("https://backendlessappcontent.com/484FA083-7EA3-0B04-FF89-9C520F131C00/F14CB3A3-B937-5A40-FFF5-6CB5DBE0C500/files/images/phone.png");
+      width: 32px;
+      height: 32px;
+      background-size: contain;
+      background-repeat: no-repeat;
+      margin: 0 0;
+    }
+    font-size: 22px;
+    &:link{
+      color: black;
+      text-decoration: none;
+    }
+  }
+}
+
+.image-holder {
+  display: flex;
+  flex: 0 0 auto;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  &__image{
+    &__text{
+      font-size: 22px;
+      display: none;
+    }
+    &_trust, &_team, &_house{
+      margin: 10px;
+      width: 256px;
+      height: 256px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      background-size: cover;
+      background-position: center center;
+      background-repeat: no-repeat;
+      border-radius: 50% 50%;
+      border: 4px solid @border;
+      &:hover p{
+        cursor: default;
+        display: block;
+      }
+    }
+    &_trust{
+      background-position: right;
+      background-image: url("https://backendlessappcontent.com/484FA083-7EA3-0B04-FF89-9C520F131C00/F14CB3A3-B937-5A40-FFF5-6CB5DBE0C500/files/images/trust.jpeg");
+    }
+    &_team{
+      background-image: url("https://backendlessappcontent.com/484FA083-7EA3-0B04-FF89-9C520F131C00/F14CB3A3-B937-5A40-FFF5-6CB5DBE0C500/files/images/team.jpg");
+    }
+    &_house{
+      background-position: 35%;
+      background-image: url("https://backendlessappcontent.com/484FA083-7EA3-0B04-FF89-9C520F131C00/F14CB3A3-B937-5A40-FFF5-6CB5DBE0C500/files/images/house.jpg");
+    }
+  }
+}

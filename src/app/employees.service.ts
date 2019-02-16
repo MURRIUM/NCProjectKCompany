@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {Employee} from './Employee';
 import {User} from './user';
 
@@ -13,6 +13,7 @@ export class EmployeesService {
 
   public lastId: number;
   public employees: Employee[] = [];
+  public users: Employee[] = [];
   public profileEmployee: Employee;
   public loggedUser: User;
 
@@ -20,17 +21,16 @@ export class EmployeesService {
     return Backendless.UserService.getCurrentUser()
       .then( ( currentUser: User ) => {
         this.loggedUser = currentUser;
-        this.loadSingleEmployee(this.loggedUser.id).finally(() => {
+        this.loadSingleEmployee(currentUser.id).then(() => {
           this.loggedUser.profile = this.profileEmployee;
         });
-        }
-      );
+      });
   }
 
   logIn(login: string, password: string) {
     return Backendless.UserService.login(login, password, true).then((loggedInUser: User) => {
       this.loggedUser = loggedInUser;
-      this.loadSingleEmployee(this.loggedUser.id).finally(() => {
+      this.loadSingleEmployee(loggedInUser.id).then(() => {
         this.loggedUser.profile = this.profileEmployee;
       });
     });
@@ -67,6 +67,17 @@ export class EmployeesService {
     queryBuilder.setPageSize(1);
     return EmployeesOfCompany.find<Employee>(queryBuilder).then((employee: Employee[]) => {
       this.lastId = employee[0].id;
+    });
+  }
+
+  loadUsers() {
+    queryBuilder.setPageSize(100);
+    queryBuilder.setSortBy('id');
+    queryBuilder.setWhereClause(`hasLogin = true`);
+    return EmployeesOfCompany.find<Employee>(queryBuilder).then((employees: Employee[]) => {
+      this.users = employees;
+      queryBuilder.setPageSize(20);
+      queryBuilder.setWhereClause('');
     });
   }
 

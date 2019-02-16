@@ -35,8 +35,6 @@ export class EmployeeEditComponent implements OnInit {
       birthday: ['', Validators.required],
       status: [''],
       commentary: [''],
-      login: [''],
-      password: ['']
     });
 
     if (this.data.employee.id) {
@@ -51,8 +49,6 @@ export class EmployeeEditComponent implements OnInit {
             birthday: [this.employee.birthday.slice(0, 10), Validators.required],
             status: [this.employee.status],
             commentary: [this.employee.commentary ? this.employee.commentary : '' ],
-            login: [''],
-            password: ['']
           });
         }
         if (this.employee.image) {

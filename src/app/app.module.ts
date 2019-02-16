@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import {NgModule} from '@angular/core';
 import {MatDialogModule} from '@angular/material';
+import { RouterModule } from '@angular/router';
 import Backendless from 'backendless';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -14,6 +15,7 @@ import { EmployeeEditComponent } from './employee-edit/employee-edit.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { LoginPopupComponent } from './login-popup/login-popup.component';
 import { AdminPanelComponent } from './admin-panel/admin-panel.component';
+import { CreateAccountPopupComponent } from './create-account-popup/create-account-popup.component';
 
 Backendless.initApp(environment.backendless.APP_ID, environment.backendless.API_KEY);
 
@@ -25,7 +27,8 @@ Backendless.initApp(environment.backendless.APP_ID, environment.backendless.API_
     EmployeeProfileComponent,
     EmployeeEditComponent,
     LoginPopupComponent,
-    AdminPanelComponent
+    AdminPanelComponent,
+    CreateAccountPopupComponent
   ],
   imports: [
     BrowserModule,
@@ -33,13 +36,17 @@ Backendless.initApp(environment.backendless.APP_ID, environment.backendless.API_
     FormsModule,
     ReactiveFormsModule,
     MatDialogModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    RouterModule.forRoot([])
   ],
   providers: [],
-  bootstrap: [AppComponent],
+  bootstrap: [
+    AppComponent
+  ],
   entryComponents: [
     EmployeeEditComponent,
-    LoginPopupComponent
+    LoginPopupComponent,
+    CreateAccountPopupComponent
   ]
 })
-export class AppModule { }
+export class AppModule {}

@@ -6,6 +6,7 @@ import {ActivatedRoute} from '@angular/router';
 import {Location} from '@angular/common';
 import {MatDialog, MatDialogRef} from '@angular/material';
 import {EmployeeEditComponent} from '../employee-edit/employee-edit.component';
+import {CreateAccountPopupComponent} from '../create-account-popup/create-account-popup.component';
 
 @Component({
   selector: 'app-employee-profile',
@@ -17,6 +18,7 @@ export class EmployeeProfileComponent implements OnInit {
   @Input() employee: Employee;
   standardImg = STANDARD_IMAGE;
   noEmployeeById = false;
+  changingProfile = false;
 
   constructor(
     private route: ActivatedRoute,
@@ -48,15 +50,32 @@ export class EmployeeProfileComponent implements OnInit {
   }
 
   checkLogin(): boolean {
+    if (this.changingProfile) {
+      return false;
+    }
     if (this.employeesService.loggedUser && this.employeesService.loggedUser.profile) {
-      if(this.employeesService.loggedUser.profile.admin || this.employeesService.loggedUser.id === this.employee.id) {
+      if (this.employeesService.loggedUser.profile.admin || this.employeesService.loggedUser.id === this.employee.id) {
         return true;
       }
     }
     return false;
   }
 
+  createAccount() {
+    this.changingProfile = true;
+    this.cdr.detectChanges();
+    const dialogRef = this.dialog.open(CreateAccountPopupComponent, {data: {employee: this.employee}});
+
+    dialogRef.afterClosed().subscribe(() => {
+      this.changingProfile = false;
+      this.ngOnInit();
+    });
+    this.changingProfile = false;
+  }
+
   onEdit(employee: Employee) {
+    this.changingProfile = true;
+    this.cdr.detectChanges();
     let dialogRef: MatDialogRef<EmployeeEditComponent>;
     if (employee) {
       dialogRef = this.dialog.open(EmployeeEditComponent, {data: {employee: employee}});
@@ -69,7 +88,9 @@ export class EmployeeProfileComponent implements OnInit {
         this.employeesService.loadAll();
         this.location.back();
       }
+      this.changingProfile = false;
     });
+    this.changingProfile = false;
   }
 
   onDelete() {

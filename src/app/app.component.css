@@ -10,20 +10,28 @@
   background-position: 50% 50%;
   background-size: 100%;
   background-repeat: no-repeat;
+  padding-bottom: 0;
   margin: 0 0 0 0;
   align-self: center;
 }
-.header {
-  background-color: #217a00;
+.main-page__router {
+  overflow-y: hidden;
+}
+.main-page__header {
+  position: relative;
+  top: -8px;
+  left: -8px;
+  width: 102%;
+  font-size: 24px;
 }
 .header__text {
-  color: white;
+  color: #000000;
 }
 .navigation {
-  background-color: #000000;
+  font-family: "Droid Sans", sans-serif;
 }
 .navigation__item {
-  background-color: #205000;
+  background-color: #243950;
   margin: 3px;
   color: white;
   padding: 10px;
@@ -32,9 +40,15 @@
   cursor: pointer;
 }
 .navigation__item:hover {
-  background-color: #3e783b;
+  background-color: #26647d;
+  background-color: rgba(36, 57, 80, 0.71);
 }
 .navigation__item:disabled {
-  background-color: rgba(90, 184, 119, 0.76);
+  background-color: rgba(21, 104, 125, 0.76);
+}
+.navigation__item:active,
+.navigation__item:focus {
+  border: none;
+  outline: none !important;
 }
 /*# sourceMappingURL=app.component.css.map */

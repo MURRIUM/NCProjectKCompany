@@ -1,6 +1,6 @@
 .holder {
-  padding: 20px;
-  background-color: #263238;
+  padding: 20px 20px;
+  background: #263238;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -23,7 +23,7 @@
   margin: 10px;
 }
 .container__clarification {
-  text-shadow: 2px 0 0 #3e783b, -2px 0 0 #3e783b, 0 2px 0 #3e783b, 0 -2px 0 #3e783b, 1px 1px #3e783b, -1px -1px 0 #3e783b, 1px -1px 0 #3e783b, -1px 1px 0 #3e783b;
+  text-shadow: 2px 0 0 #26647d, -2px 0 0 #26647d, 0 2px 0 #26647d, 0 -2px 0 #26647d, 1px 1px #26647d, -1px -1px 0 #26647d, 1px -1px 0 #26647d, -1px 1px 0 #26647d;
   font-size: 20px;
   padding-bottom: 10px;
   display: block;
@@ -47,7 +47,7 @@
   cursor: pointer;
 }
 .container__button:hover {
-  background-color: #3e783b;
+  background-color: #26647d;
 }
 .container__button:disabled {
   background-color: rgba(58, 59, 62, 0.76);

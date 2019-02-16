@@ -1,16 +1,36 @@
 <!--The content below is only a placeholder and can be replaced.-->
 <div class="main-page">
-  <div class="header">
-    <h1 class="header__text">Компания К</h1>
+  <div class="main-page__header">
+    <div class="header">
+      <h1 class="header__text">Компания К</h1>
+    </div>
+
+    <nav class="navigation">
+      <button class="navigation__item" routerLink="/main-page"
+              [disabled]="route.snapshot['_routerState'].url === '/main-page'">
+        Главная
+      </button>
+      <button class="navigation__item" routerLink="/employees"
+              [disabled]="route.snapshot['_routerState'].url === '/employees'">
+        Список сотрудников
+      </button>
+      <button *ngIf="employeesService.loggedUser
+                && employeesService.loggedUser.profile
+                && employeesService.loggedUser.profile.admin"
+              class="navigation__item" routerLink="/admin"
+              [disabled]="route.snapshot['_routerState'].url === '/admin'">
+        Модуль администратора
+      </button>
+      <button *ngIf="employeesService.loggedUser"
+              class="navigation__item"
+              routerLink="/profile/{{employeesService.loggedUser.id}}"
+              [disabled]="route.snapshot['_routerState'].url.slice(0,9) === '/profile/'">
+        Профиль
+      </button>
+      <button *ngIf="!employeesService.loggedUser" class="navigation__item" (click)="openLoginPopup()">Войти</button>
+      <button *ngIf="employeesService.loggedUser" class="navigation__item" (click)="logOut()">Выход</button>
+    </nav>
   </div>
-  
-  <nav class="navigation">
-    <button class="navigation__item" routerLink="/main-page">Главная</button>
-    <button class="navigation__item" routerLink="/employees">Список сотрудников</button>
-    <button *ngIf="employeesService.loggedUser" class="navigation__item" routerLink="/profile/{{employeesService.loggedUser.id}}">Профиль</button>
-    <button *ngIf="!employeesService.loggedUser" class="navigation__item" (click)="openLoginPopup()">Войти</button>
-    <button *ngIf="employeesService.loggedUser" class="navigation__item" (click)="logOut()">Выход</button>
-  </nav>
   <router-outlet class="main-page__router"></router-outlet>
 </div>
 
