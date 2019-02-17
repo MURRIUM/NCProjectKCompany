@@ -47,7 +47,7 @@ export class EmployeesTableComponent implements OnInit {
     });
   }
 
-  onNext() {
+  onNext(): void {
     if (this.prevDisabled) {
       this.prevDisabled = false;
     }
@@ -61,7 +61,7 @@ export class EmployeesTableComponent implements OnInit {
     });
   }
 
-  onPrev() {
+  onPrev(): void {
     if (this.nextDisabled) {
       this.nextDisabled = false;
     }

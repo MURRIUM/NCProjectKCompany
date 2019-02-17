@@ -5,6 +5,7 @@ import {MainPageComponent} from './main-page/main-page.component';
 import {EmployeeProfileComponent} from './employee-profile/employee-profile.component';
 import {APP_BASE_HREF} from '@angular/common';
 import {AdminPanelComponent} from './admin-panel/admin-panel.component';
+import {PageNotFoundComponent} from './page-not-found/page-not-found.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/main-page', pathMatch: 'full' },
@@ -12,7 +13,8 @@ const routes: Routes = [
   {path: 'main-page', component: MainPageComponent},
   {path: 'profile', component: EmployeeProfileComponent},
   {path: 'profile/:id', component: EmployeeProfileComponent},
-  {path: 'admin', component: AdminPanelComponent}
+  {path: 'admin', component: AdminPanelComponent},
+  {path: '**', component: PageNotFoundComponent}
 ];
 
 @NgModule({

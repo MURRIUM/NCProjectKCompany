@@ -3,6 +3,8 @@ import {EmployeesService} from './employees.service';
 import {MatDialog} from '@angular/material';
 import {LoginPopupComponent} from './login-popup/login-popup.component';
 import {ActivatedRoute, Router} from '@angular/router';
+import {Employee} from './Employee';
+import {User} from './user';
 
 
 @Component({
@@ -21,13 +23,12 @@ export class AppComponent {
     private cdr: ChangeDetectorRef,
     private router: Router
   ) {
-    this.employeesService.checkLoginUser().finally(() => {
-      this.router.navigate(['/main-page']);
+    this.employeesService.checkLoginUser().then(() => {
       this.cdr.detectChanges();
     });
   }
 
-  openLoginPopup() {
+  openLoginPopup(): void {
     const dialogRef = this.dialog.open(LoginPopupComponent);
 
     dialogRef.afterClosed().subscribe(() => {
@@ -36,7 +37,7 @@ export class AppComponent {
     });
   }
 
-  logOut() {
+  logOut(): void {
     this.employeesService.logOut().finally(() => {
       this.router.navigate(['/main-page']);
       this.cdr.detectChanges();

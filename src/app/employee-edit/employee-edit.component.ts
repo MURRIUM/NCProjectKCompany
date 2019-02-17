@@ -39,7 +39,7 @@ export class EmployeeEditComponent implements OnInit {
 
     if (this.data.employee.id) {
       const id = this.data.employee.id;
-      this.employeesService.getEmployeeFromServer(id).finally(() => {
+      this.employeesService.loadSingleEmployee(id).finally(() => {
         this.employee = this.employeesService.profileEmployee;
         if (this.employee) {
           this.isNew = false;
@@ -61,11 +61,11 @@ export class EmployeeEditComponent implements OnInit {
     this.cdr.detectChanges();
   }
 
-  addImage() {
+  addImage(): void {
     this.image.nativeElement.click();
   }
 
-  onImageAdded() {
+  onImageAdded(): void {
     if (this.employee && this.employee.image) {
       this.onDeleteImage();
     }
@@ -78,7 +78,7 @@ export class EmployeeEditComponent implements OnInit {
       });
   }
 
-  onSubmit() {
+  onSubmit(): void {
     if (this.editEmployee.valid) {
       if (!this.employee) {
         this.employee = new Employee();
@@ -108,7 +108,7 @@ export class EmployeeEditComponent implements OnInit {
       });
     }
   }
-  onDelete() {
+  onDelete(): void {
     if (this.employee) {
       this.employeesService.delete(this.employee).finally(() => this.employeesService.loadAll());
       this.matDialogRef.close(true);
@@ -123,7 +123,7 @@ export class EmployeeEditComponent implements OnInit {
     }
   }
 
-  onDeleteImage() {
+  onDeleteImage(): void {
     this.employeesService.deleteImage(this.profileImage).then(() => {
       if (this.employee) {
         this.employee.image = null;

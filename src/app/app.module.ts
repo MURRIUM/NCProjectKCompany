@@ -16,6 +16,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { LoginPopupComponent } from './login-popup/login-popup.component';
 import { AdminPanelComponent } from './admin-panel/admin-panel.component';
 import { CreateAccountPopupComponent } from './create-account-popup/create-account-popup.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 Backendless.initApp(environment.backendless.APP_ID, environment.backendless.API_KEY);
 
@@ -28,7 +29,8 @@ Backendless.initApp(environment.backendless.APP_ID, environment.backendless.API_
     EmployeeEditComponent,
     LoginPopupComponent,
     AdminPanelComponent,
-    CreateAccountPopupComponent
+    CreateAccountPopupComponent,
+    PageNotFoundComponent
   ],
   imports: [
     BrowserModule,

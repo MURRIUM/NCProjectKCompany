@@ -29,13 +29,13 @@ export class CreateAccountPopupComponent implements OnInit {
       password: ['', Validators.required],
     });
     const id = this.data.employee.id;
-    this.employeesService.getEmployeeFromServer(id).finally(() => {
+    this.employeesService.loadSingleEmployee(id).finally(() => {
       this.employee = this.employeesService.profileEmployee;
       this.cdr.detectChanges();
     });
   }
 
-  onSubmit() {
+  onSubmit(): void {
     if (this.loginEmployee.valid) {
       let newUser: User;
       newUser = new User();

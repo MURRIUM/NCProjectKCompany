@@ -1,6 +1,5 @@
 import {ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit} from '@angular/core';
 import {EmployeesService} from '../employees.service';
-import {MatDialog} from '@angular/material';
 import {Employee} from '../Employee';
 
 @Component({
@@ -13,7 +12,6 @@ export class AdminPanelComponent implements OnInit {
 
   constructor(
     private employeesService: EmployeesService,
-    public dialog: MatDialog,
     private cdr: ChangeDetectorRef) { }
 
   ngOnInit() {
@@ -26,7 +24,7 @@ export class AdminPanelComponent implements OnInit {
     return this.employeesService.users;
   }
 
-  changeRights(user: Employee) {
+  changeRights(user: Employee): void {
     user.admin ? user.admin = false : user.admin = true;
     this.employeesService.save(user).then(() => {
       this.ngOnInit();

@@ -25,7 +25,7 @@ export class LoginPopupComponent implements OnInit {
     });
   }
 
-  onSubmit() {
+  onSubmit(): void {
     this.employeesService.logIn(this.loginPopup.value.login, this.loginPopup.value.password).then(() => {
       this.matDialogRef.close();
     });

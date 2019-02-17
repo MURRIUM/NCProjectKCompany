@@ -33,8 +33,8 @@ export class EmployeeProfileComponent implements OnInit {
     this.getEmployee(id);
   }
 
-  getEmployee(id: number) {
-    this.employeesService.getEmployeeFromServer(id).then(() => {
+  getEmployee(id: number): void {
+    this.employeesService.loadSingleEmployee(id).then(() => {
       this.employee = this.employeesService.profileEmployee;
       if (this.employee.image) {
         this.standardImg = this.employee.image;
@@ -61,7 +61,7 @@ export class EmployeeProfileComponent implements OnInit {
     return false;
   }
 
-  createAccount() {
+  createAccount(): void {
     this.changingProfile = true;
     this.cdr.detectChanges();
     const dialogRef = this.dialog.open(CreateAccountPopupComponent, {data: {employee: this.employee}});
@@ -73,7 +73,7 @@ export class EmployeeProfileComponent implements OnInit {
     this.changingProfile = false;
   }
 
-  onEdit(employee: Employee) {
+  onEdit(employee: Employee): void {
     this.changingProfile = true;
     this.cdr.detectChanges();
     let dialogRef: MatDialogRef<EmployeeEditComponent>;
@@ -93,7 +93,7 @@ export class EmployeeProfileComponent implements OnInit {
     this.changingProfile = false;
   }
 
-  onDelete() {
+  onDelete(): void {
     if (this.employee) {
       this.employeesService.delete(this.employee).finally(() => {
         this.employeesService.loadAll().finally(() => {
