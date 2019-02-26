@@ -10,7 +10,8 @@
               [disabled]="route.snapshot['_routerState'].url === '/main-page'">
         Главная
       </button>
-      <button class="navigation__item" routerLink="/employees"
+      <button *ngIf="employeesService.loggedUser"
+              class="navigation__item" routerLink="/employees"
               [disabled]="route.snapshot['_routerState'].url === '/employees'">
         Список сотрудников
       </button>

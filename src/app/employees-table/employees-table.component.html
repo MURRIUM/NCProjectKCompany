@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container" *ngIf="employeesService.loggedUser">
   <table class="table">
     <tr class="tier">
       <th class="tier__th_small">ID</th>
@@ -23,5 +23,8 @@
   employeesService.loggedUser.profile &&
   employeesService.loggedUser.profile.admin"
     mat-raised-button class="button" (click)="openEditDialog(null)">Добавить</button>
+</div>
+<div class="holder" *ngIf="!employeesService.loggedUser">
+  Недостаточно прав доступа
 </div>
 

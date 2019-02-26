@@ -15,7 +15,7 @@ export class EmployeesTableComponent implements OnInit {
   nextDisabled = true;
   prevDisabled = false;
   prevId = 1;
-  constructor(private employeesService: EmployeesService,
+  constructor(public employeesService: EmployeesService,
               public dialog: MatDialog,
               private cdr: ChangeDetectorRef) { }
 
