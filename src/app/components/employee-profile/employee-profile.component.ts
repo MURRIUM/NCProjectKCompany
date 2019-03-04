@@ -1,7 +1,7 @@
 import {ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnInit} from '@angular/core';
-import {Employee, STANDARD_IMAGE} from '../Employee';
+import {Employee, STANDARD_IMAGE} from '../../models/Employee';
 import {FormBuilder} from '@angular/forms';
-import {EmployeesService} from '../employees.service';
+import {EmployeesService} from '../../services/employees.service';
 import {ActivatedRoute} from '@angular/router';
 import {Location} from '@angular/common';
 import {MatDialog, MatDialogRef} from '@angular/material';

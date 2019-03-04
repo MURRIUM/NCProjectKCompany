@@ -1,9 +1,9 @@
 import {ChangeDetectionStrategy, ChangeDetectorRef, Component, Inject, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {EmployeesService} from '../employees.service';
+import {EmployeesService} from '../../services/employees.service';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
-import {User} from '../user';
-import {Employee} from '../Employee';
+import {User} from '../../models/user';
+import {Employee} from '../../models/Employee';
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,

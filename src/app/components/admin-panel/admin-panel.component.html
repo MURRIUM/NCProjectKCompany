@@ -1,4 +1,6 @@
-<div *ngIf="employeesService.loggedUser && employeesService.loggedUser.profile.admin" >
+<div *ngIf="employeesService.loggedUser
+            && employeesService.loggedUser.profile
+            && employeesService.loggedUser.profile.admin" >
   <table class="table">
     <tr class="tier">
       <th class="tier__th_small">ID</th>

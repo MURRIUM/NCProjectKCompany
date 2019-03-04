@@ -1,10 +1,10 @@
 import {ApplicationRef, ChangeDetectionStrategy, ChangeDetectorRef, Component, NgZone, OnInit} from '@angular/core';
-import {EmployeesService} from './employees.service';
+import {EmployeesService} from './services/employees.service';
 import {MatDialog} from '@angular/material';
-import {LoginPopupComponent} from './login-popup/login-popup.component';
+import {LoginPopupComponent} from './components/login-popup/login-popup.component';
 import {ActivatedRoute, Router} from '@angular/router';
-import {Employee} from './Employee';
-import {User} from './user';
+import {Employee} from './models/Employee';
+import {User} from './models/user';
 
 
 @Component({

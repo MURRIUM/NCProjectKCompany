@@ -1,9 +1,9 @@
 import {ChangeDetectionStrategy, ChangeDetectorRef, Component, Inject, OnInit, ViewChild} from '@angular/core';
-import {Employee, STANDARD_IMAGE} from '../Employee';
+import {Employee, STANDARD_IMAGE} from '../../models/Employee';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {EmployeesService} from '../employees.service';
+import {EmployeesService} from '../../services/employees.service';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
-import {User} from '../user';
+import {User} from '../../models/user';
 
 // @ts-ignore
 @Component({

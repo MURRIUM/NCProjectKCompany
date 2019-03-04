@@ -1,6 +1,6 @@
 import {ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit} from '@angular/core';
-import {EmployeesService} from '../employees.service';
-import {Employee} from '../Employee';
+import {EmployeesService} from '../../services/employees.service';
+import {Employee} from '../../models/Employee';
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,

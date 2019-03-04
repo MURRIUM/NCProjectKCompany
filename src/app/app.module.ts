@@ -6,17 +6,17 @@ import Backendless from 'backendless';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { MainPageComponent } from './main-page/main-page.component';
-import { EmployeesTableComponent } from './employees-table/employees-table.component';
+import { MainPageComponent } from './components/main-page/main-page.component';
+import { EmployeesTableComponent } from './components/employees-table/employees-table.component';
 import {environment} from '../environments/environment';
-import { EmployeeProfileComponent } from './employee-profile/employee-profile.component';
+import { EmployeeProfileComponent } from './components/employee-profile/employee-profile.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import { EmployeeEditComponent } from './employee-edit/employee-edit.component';
+import { EmployeeEditComponent } from './components/employee-edit/employee-edit.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import { LoginPopupComponent } from './login-popup/login-popup.component';
-import { AdminPanelComponent } from './admin-panel/admin-panel.component';
-import { CreateAccountPopupComponent } from './create-account-popup/create-account-popup.component';
-import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { LoginPopupComponent } from './components/login-popup/login-popup.component';
+import { AdminPanelComponent } from './components/admin-panel/admin-panel.component';
+import { CreateAccountPopupComponent } from './components/create-account-popup/create-account-popup.component';
+import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 
 Backendless.initApp(environment.backendless.APP_ID, environment.backendless.API_KEY);
 
@@ -39,8 +39,9 @@ Backendless.initApp(environment.backendless.APP_ID, environment.backendless.API_
     ReactiveFormsModule,
     MatDialogModule,
     BrowserAnimationsModule,
-    RouterModule.forRoot([])
+    RouterModule.forRoot( [])
   ],
+  exports: [],
   providers: [],
   bootstrap: [
     AppComponent

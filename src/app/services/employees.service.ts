@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
-import {Employee} from './Employee';
-import {User} from './user';
+import {Employee} from '../models/Employee';
+import {User} from '../models/user';
 
 const EmployeesOfCompany = Backendless.Data.of('CompanyTable');
 const queryBuilder = Backendless.DataQueryBuilder.create();
